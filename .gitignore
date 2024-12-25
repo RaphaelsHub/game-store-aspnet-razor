@@ -1,0 +1,11 @@
+bin/
+obj/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.sqlproj
+*.sln.docstates
+appsettings.json
