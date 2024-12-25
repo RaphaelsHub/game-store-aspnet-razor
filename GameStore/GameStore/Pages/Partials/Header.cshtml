@@ -1,0 +1,80 @@
+@{
+    bool IsAuthorized = true;
+}
+
+<div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a asp-page="/Home/Index" class="logo">
+                        <img src="/images/logo.png" alt="" style="width: 158px;">
+                    </a>
+
+                    <ul class="nav">
+                        <li>
+                            <a asp-page="/Home/Index" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Home/Owned">Owned Subscribtions</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Home/Contact">Contact Us</a>
+                        </li>
+                        <li>
+                            <div class="search-input">
+                                <form id="search" action="#">
+                                    <input type="text" placeholder="Find product" id='searchText' name="searchKeyword" onkeypress="handle"/>
+                                    <button role="button">Search Now</button>
+                                </form>
+                            </div>
+                        </li>
+                        @if (IsAuthorized)
+                        {
+                            <li>
+                                <a asp-page="/Home/Index">Sign Out</a>
+                            </li>
+                            IsAuthorized = false;
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-page="/Home/Index">Sign In</a>
+                            </li>
+                            <li>
+                                <a asp-page="/Home/Index">Sign Up</a>
+                            </li>
+                            IsAuthorized = true;
+                        }
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>
+                    @ViewData["Title"]
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
