@@ -12,6 +12,35 @@ Educational project for learning how ASP.NET Razor Pages and how Frontend and Ba
 4. Run the project: `dotnet run`
 
 
+## How to transfer data from frontend to backend and how to call methods
+I learned how to call methods in Razor Pages:  
+
+1. **HTTP Method**:  
+   - For a POST method, specify `method="post"`.  
+   - For a GET method, specify `method="get"`.  
+
+2. **Calling Static Pages**:  
+   - Use the `asp-page` attribute to reference the page:  
+     ```html
+     <a asp-page="/PageName">Go to Page</a>
+     ```
+
+3. **Passing Data to Pages**:  
+   - Use `asp-route-{variable}` to pass data via route parameters:  
+     ```html
+     <a asp-page="/PageName" asp-route-id="123">Details</a>
+     ```
+
+4. **Calling Methods from PageModel**:  
+   - Use `asp-page-handler` to specify the method (handler) to call:  
+     ```html
+     <form method="post" asp-page-handler="Submit">
+         <input type="text" name="Name" />
+         <button type="submit">Submit</button>
+     </form>
+     ```  
+   - This will invoke the corresponding handler in the PageModel, such as `OnPostSubmit()`.
+
 ## License
 Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) License
 
