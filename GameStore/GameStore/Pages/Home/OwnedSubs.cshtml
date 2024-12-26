@@ -1,0 +1,47 @@
+@page
+@model GameStore.Pages.Home.OwnedSubs
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Owned Subscriptions";
+}
+
+<div class="section trending" style="margin-top: 50px; margin-bottom: 350px;">
+    <div class="container">
+        <div class="row trending-box">
+            @if (Model.Products != null && Model.Products.Any())
+            {
+                foreach (var product in Model.Products)
+                {
+                    <div class="d-flex align-items-center mb-30 trending-items str" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: 33.33%;">
+                        <div class="thumb" style="flex: 0 0 auto;">
+                            <a asp-page="/Home/ProductDetails" asp-route-id="@product.Id">
+                                <img src="data:image/png;base64,@Convert.ToBase64String(product.Image)" alt="" style="width: 80px; height: 80px; object-fit: cover;">
+                            </a>
+                        </div>
+
+                        <div class="down-content" style="flex: 1; margin-left: 15px;">
+                            <h4 style="margin: 0;">@product.Name</h4>
+                        </div>
+
+                        <form method="post">
+                            <div style="flex: 0 0 auto; margin-left: auto;">
+                                <button type="submit" class="btn btn-danger" asp-page="/Home/OwnedSubs" asp-page-handler="UnSubscribe" asp-route-id="@product.Id" style="padding: 5px 10px;">
+                                    UnSubscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <div class="jumbotron">
+                        <h1>Products are not found!</h1>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

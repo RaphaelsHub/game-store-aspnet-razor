@@ -5,78 +5,39 @@
     Layout = "_Layout";
 }
 
-
-<div class="section trending">
+<div class="section trending" style="margin-top: 50px; margin-bottom: 350px;">
     <div class="container">
         <div class="row trending-box">
-            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
-                <div class="item">
-                    <div class="thumb">
-                        <a asp-page="/Home/ProductDetails">
-                            <img src="/images/trending-01.jpg" alt="">
-                        </a>
-                        <span class="price"><em>$36</em>$24</span>
-                    </div>
-                    <div class="down-content">
-                        <span class="category">Action</span>
-                        <h4>Assasin Creed</h4>
-                        <a asp-page="/Home/ProductDetails">
-                            <i class="fa fa-shopping-bag"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-                <div class="item">
-                    <div class="thumb">
-                        <a asp-page="/Home/ProductDetails">
-                            <img src="/images/trending-02.jpg" alt="">
-                        </a>
-                        <span class="price"><em>$32</em>$22</span>
-                    </div>
-                    <div class="down-content">
-                        <span class="category">Action</span>
-                        <h4>Assasin Creed</h4>
-                        <a asp-page="/Home/ProductDetails">
-                            <i class="fa fa-shopping-bag"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-                <div class="item">
-                    <div class="thumb">
-                        <a asp-page="/Home/ProductDetails">
-                            <img src="/images/trending-03.jpg" alt="">
-                        </a>
-                        <span class="price"><em>$32</em>$22</span>
-                    </div>
-                    <div class="down-content">
-                        <span class="category">Action</span>
-                        <h4>Assasin Creed</h4>
-                        <a asp-page="/Home/ProductDetails">
-                            <i class="fa fa-shopping-bag"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 str">
-                            <div class="item">
-                                <div class="thumb">
-                                    <a asp-page="/Home/ProductDetails">
-                                        <img src="/images/trending-04.jpg" alt="">
-                                    </a>
-                                    <span class="price"><em>$32</em>$22</span>
-                                </div>
-                                <div class="down-content">
-                                    <span class="category">Action</span>
-                                    <h4>Assasin Creed</h4>
-                                    <a asp-page="/Home/ProductDetails">
-                                        <i class="fa fa-shopping-bag"></i>
-                                    </a>
-                                </div>
+            @if (Model.Products != null && Model.Products.Any())
+            {
+                foreach (var product in Model.Products)
+                {
+                    <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+                        <div class="item">
+                            <div class="thumb">
+                                <a asp-page="/Home/ProductDetails" asp-route-id="@product.Id">
+                                    <img src="data:image/png;base64,@Convert.ToBase64String(product.Image)" alt=""/>
+                                </a>
+                                <span class="price"><em>$@product.OriginalPrice</em> $@product.DiscountedPrice</span>
+                            </div>
+                            <div class="down-content">
+                                <h4>@product.Name</h4>
+                                <a asp-page="/Home/ProductDetails" asp-route-id="@product.Id">
+                                    <i class="fa fa-shopping-bag"></i>
+                                </a>
                             </div>
                         </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <div class="jumbotron">
+                        <h1>Products are not found!</h1>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

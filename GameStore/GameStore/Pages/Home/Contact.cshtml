@@ -1,9 +1,10 @@
 @page
-@model GameStore.Pages.Contact
+@using GameStore.Dal.DTOs
+@model Contact
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Contact Us";
 }
 
 <div class="contact-page section">
@@ -36,27 +37,37 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                        <label asp-for="ContactData.Name" class="form-label required"></label>
+                        <input asp-for="ContactData.Name" class="form-control" placeholder="Name">
+                        <span asp-validation-for="ContactData.Name" class="text-danger"></span>
                       </fieldset>
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="surname" name="surname" id="surname" placeholder="Your Surname..." autocomplete="on" required>
+                        <label asp-for="ContactData.Surname" class="form-label required" ></label>
+                        <input asp-for="ContactData.Surname" class="form-control" placeholder="Surname">
+                        <span asp-validation-for="ContactData.Surname" class="text-danger"></span>
                       </fieldset>
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ ]*[^ ]*" placeholder="Your E-mail..." required="">
+                        <label asp-for="ContactData.Email" class="form-label required"></label>
+                        <input asp-for="ContactData.Email" class="form-control" placeholder="Email">
+                        <span asp-validation-for="ContactData.Email" class="text-danger"></span>
                       </fieldset>
                     </div>
                     <div class="col-lg-6">
                       <fieldset>
-                        <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                        <label asp-for="ContactData.Subject" class="form-label required"></label>
+                        <input asp-for="ContactData.Subject" class="form-control" placeholder="Phone">
+                        <span asp-validation-for="ContactData.Subject" class="text-danger"></span>
                       </fieldset>
                     </div>
                     <div class="col-lg-12">
                       <fieldset>
-                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                        <label asp-for="ContactData.Message" class="form-label required"></label>
+                        <input asp-for="ContactData.Message" class="form-control" placeholder="Phone">
+                        <span asp-validation-for="ContactData.Message" class="text-danger"></span>
                       </fieldset>
                     </div>
                     <div class="col-lg-12">

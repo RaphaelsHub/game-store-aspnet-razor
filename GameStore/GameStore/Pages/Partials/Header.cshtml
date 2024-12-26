@@ -1,5 +1,5 @@
 @{
-    bool IsAuthorized = true;
+    bool IsAuthorized = ViewData["IsAuthorized"] != null && (bool)ViewData["IsAuthorized"];
 }
 
 <div id="js-preloader" class="js-preloader">
@@ -27,35 +27,25 @@
                             <a asp-page="/Home/Index" class="active">Home</a>
                         </li>
                         <li>
-                            <a asp-page="/Home/Owned">Owned Subscribtions</a>
+                            <a asp-page="/Home/OwnedSubs">Owned Subscriptions</a>
                         </li>
                         <li>
                             <a asp-page="/Home/Contact">Contact Us</a>
                         </li>
-                        <li>
-                            <div class="search-input">
-                                <form id="search" action="#">
-                                    <input type="text" placeholder="Find product" id='searchText' name="searchKeyword" onkeypress="handle"/>
-                                    <button role="button">Search Now</button>
-                                </form>
-                            </div>
-                        </li>
                         @if (IsAuthorized)
                         {
                             <li>
-                                <a asp-page="/Home/Index">Sign Out</a>
+                                <a asp-page="/Home/Index" asp-page-handler="SignOut">Sign Out</a>
                             </li>
-                            IsAuthorized = false;
                         }
                         else
                         {
                             <li>
-                                <a asp-page="/Home/Index">Sign In</a>
+                                <a asp-page="/Home/Index" asp-page-handler="SignIn">Sign In</a>
                             </li>
                             <li>
-                                <a asp-page="/Home/Index">Sign Up</a>
+                                <a asp-page="/Home/Index" asp-page-handler="SignUp">Sign Up</a>
                             </li>
-                            IsAuthorized = true;
                         }
                     </ul>
                     <a class='menu-trigger'>

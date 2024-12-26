@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\Account\" />
+      <_ContentIncludedByDefault Remove="Pages\Products\AllProducts.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Pages\Products\AllProducts.cshtml" />
+      <ProjectReference Include="..\GameStore.Dal\GameStore.Dal.csproj" />
     </ItemGroup>
 
 </Project>
